@@ -1,24 +1,29 @@
-import { getAllPosts as getData } from '@/services/getPosts';
-import { Metadata } from 'next';
-import Link from 'next/link';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Blog | Next App',
-};
+import { PostSearch } from '@/components/PostSearch';
+import { Posts } from '@/components/Posts';
+import { getAllPosts } from '@/services/getPosts';
+import { useEffect, useState } from 'react';
 
-export default async function Blog() {
-  const posts = await getData();
+// export const metadata: Metadata = {
+//   title: 'Blog | Next App',
+// };
+
+export default function Blog() {
+  const [posts, setPosts] = useState<any[]>([]);
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getAllPosts()
+      .then(setPosts)
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
       <h1>Blog page</h1>
-      <ul>
-        {posts.map((post: any) => (
-          <li key={post.id}>
-            <Link href={`/blog/${post.id}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
+      <PostSearch onSearch={setPosts} />
+      {isLoading ? <h3>Loading...</h3> : <Posts posts={posts} />}
     </>
   );
 }

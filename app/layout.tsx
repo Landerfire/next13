@@ -1,5 +1,5 @@
 import { TheFooter } from '@/components/TheFooter';
-import TheHeader from '@/components/TheHeader';
+import { TheHeader } from '@/components/TheHeader';
 import type { Metadata } from 'next';
 import './globals.css';
 

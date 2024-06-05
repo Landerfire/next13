@@ -6,7 +6,7 @@ import { PostSearch } from '../PostSearch';
 import { Posts } from '../Posts';
 
 const TheBlog = () => {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState<any[]>([]);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {

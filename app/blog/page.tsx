@@ -1,24 +1,10 @@
-import { getAllPosts as getData } from '@/services/getPosts';
+import { TheBlog } from '@/components/TheBlog';
 import { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Blog | Next App',
 };
 
-export default async function Blog() {
-  const posts = await getData();
-
-  return (
-    <>
-      <h1>Blog page</h1>
-      <ul>
-        {posts.map((post: any) => (
-          <li key={post.id}>
-            <Link href={`/blog/${post.id}`}>{post.title}</Link>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+export default function Blog() {
+  return <TheBlog />;
 }

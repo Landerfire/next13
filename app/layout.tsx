@@ -1,3 +1,4 @@
+import { Providers } from '@/components/Providers';
 import { TheFooter } from '@/components/TheFooter';
 import { TheHeader } from '@/components/TheHeader';
 import type { Metadata } from 'next';
@@ -12,9 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang='en'>
       <body>
-        <TheHeader />
-        <main className='container'>{children}</main>
-        <TheFooter />
+        <Providers>
+          <TheHeader />
+          <main className='container'>{children}</main>
+          <TheFooter />
+        </Providers>
       </body>
     </html>
   );
